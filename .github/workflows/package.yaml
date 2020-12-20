@@ -1,0 +1,51 @@
+name: Package
+
+on:
+  push:
+    branches:
+      - next
+
+jobs:
+  package:
+    name: Build and publish the package
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout the project
+        uses: actions/checkout@v2
+
+      - name: Setting up the environment
+        run: cp .env.example .env
+
+      - name: Cleanup the project
+        run: make clean
+
+      - name: Setting the token for installing private package
+        run: sed -i 's/NPM_AUTH_TOKEN=.*/NPM_AUTH_TOKEN=${{ secrets.NPM_AUTH_TOKEN }}/' .env
+
+      - name: Register the current Git user name
+        run: git config user.name ${{ secrets.WORKFLOW_GITHUB_USERNAME }}
+
+      - name: Register the current Git user email
+        run: git config user.email ${{ secrets.WORKFLOW_GITHUB_EMAIL }}
+
+      - name: Install the github token
+        run: make token
+
+      - name: Install the dependencies
+        run: make install
+
+      - name: Build the project
+        run: make build
+
+      - name: Build the types
+        run: make types
+
+      - name: Creating tag
+        run: git tag -a $(cat package.json | grep -i version | sed -e "s/ //g" | cut -c 12- | sed -e "s/\",//g") -m "$(cat package.json | grep -i version | sed -e "s/ //g" | cut -c 12- | sed -e "s/\",//g")"
+
+      - name: Publish tag
+        run: 'git push origin $(cat package.json | grep -i version | sed -e "s/ //g" | cut -c 12- | sed -e "s/\",//g") || true'
+
+      - name: Publish the package
+        run: 'make publish || true'

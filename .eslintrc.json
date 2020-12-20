@@ -1,0 +1,48 @@
+{
+    "env": {
+      "es6": true,
+      "node": true,
+      "jest": true
+    },
+    "parser": "@typescript-eslint/parser",
+    "parserOptions": {
+        "ecmaVersion": 2018,
+        "sourceType": "module"
+    },
+    "extends": [
+        "@benjaminnoufel/eslint-config-javascript"
+    ],
+    "overrides": [
+        {
+            "files": ["*.ts"],
+            "extends": "@benjaminnoufel/eslint-config-typescript",
+            "parserOptions": {
+                "project": "tsconfig.json"
+            }
+        },
+        {
+            "files": ["*.spec.ts"],
+            "extends": [
+                "@benjaminnoufel/eslint-config-typescript",
+                "plugin:jest/all"
+            ],
+            "parserOptions": {
+                "project": "tsconfig.json"
+            }
+        },
+        {
+            "files": ["*.json"],
+            "extends": "plugin:json/recommended",
+            "rules": {
+                "json/*": ["error"]
+            }
+        }
+    ],
+    "globals": {
+        "Atomics": "readonly",
+        "SharedArrayBuffer": "readonly"
+    },
+    "rules": {
+        "sort-keys": "off"
+    }
+}

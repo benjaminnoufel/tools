@@ -1,0 +1,37 @@
+name: Code Style CI
+
+on:
+    push:
+        branches:
+            - next
+
+    pull_request:
+        branches:
+            - next
+
+jobs:
+    codestyle:
+        name: Check if the code style of the source-codes is consistently applied
+        runs-on: ubuntu-latest
+
+        steps:
+            - name: Checkout the project
+              uses: actions/checkout@v2
+
+            - name: Setting up the environment
+              run: cp .env.example .env
+
+            - name: Cleanup the project
+              run: make clean
+
+            - name: Setting the token for installing private package
+              run: sed -i 's/NPM_AUTH_TOKEN=.*/NPM_AUTH_TOKEN=${{ secrets.NPM_AUTH_TOKEN }}/' .env
+
+            - name: Setup the NPM running configuration for using the authentication token
+              run: make token
+
+            - name: Install the Node.js dependencies
+              run: make install
+
+            - name: Check if the code style of the source-codes is consistently applied
+              run: make lint
