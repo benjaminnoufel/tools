@@ -2,7 +2,7 @@
 
 It's a different collection of tools.
 
-![Code Style CI](https://github.com/benjaminnoufel/tools/workflows/Code%20Style%20CI/badge.svg) ![Test CI](https://github.com/benjaminnoufel/tools/workflows/Test%20CI/badge.svg) ![Package](https://github.com/benjaminnoufel/tools/workflows/Package/badge.svg)
+![Code Style CI](https://github.com/benjaminnoufel/tools/workflows/Code%20Style%20CI/badge.svg) ![Test CI](https://github.com/benjaminnoufel/tools/workflows/Test%20CI/badge.svg) ![Package](https://github.com/benjaminnoufel/tools/workflows/Package/badge.svg) ![Package npmjs](https://github.com/benjaminnoufel/tools/workflows/Package%20npmjs/badge.svg)
 
 ## Requirements
 
@@ -26,11 +26,11 @@ $ yarn add @benjaminnoufel/tools
 
 ### Use Validator
 ```jsx
-import {phoneNumberIsValid, passwordIsValid, emailIsValid, genderIsValid} from "@benjaminnoufel/tools";
+import {phoneNumberIsValid, passwordIsValid, emailIsValid} from "@benjaminnoufel/tools";
 import {useState} from "react";
 
 const App = () => {
-    const [state, setState] = useState({ password: null, phone: null, email: null, gender: null})
+    const [state, setState] = useState({ password: null, phone: null, email: null})
 
     const handleChange = (e) => {
         if (e.target.name === "phone" && phoneNumberIsValid(state.phone)) {
@@ -39,23 +39,17 @@ const App = () => {
                 phone: e.target.value
             })
         }
-        if (e.target.name === "password" && phoneNumberIsValid(state.password)) {
+        if (e.target.name === "password" && passwordIsValid(state.password)) {
             setState({
                 ...state,
                 password: e.target.value
             })
         }
 
-        if (e.target.name === "email" && phoneNumberIsValid(state.email)) {
+        if (e.target.name === "email" && emailIsValid(state.email)) {
             setState({
                 ...state,
                 email: e.target.value
-            })
-        }
-        if (e.target.name === "gender" && phoneNumberIsValid(state.gender)) {
-            setState({
-                ...state,
-                gender: e.target.value
             })
         }
     }       
@@ -63,7 +57,6 @@ const App = () => {
 
     return (
         <>
-            <input placeholder="Gender" type="gender" name="gender" value={state.gender} onChange={handleChange} />
             <input placeholder="Email" type="email" name="email" value={state.email} onChange={handleChange} />
             <input placeholder="Password" type="password" name="password" value={state.password} onChange={handleChange} />
             <input placeholder="phone number" type="text" name="phone" value={state.phone} onChange={handleChange} />
