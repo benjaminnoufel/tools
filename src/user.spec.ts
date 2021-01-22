@@ -21,7 +21,7 @@ describe("test user", (): void => {
 
         expect(() => passwordIsValid(12)).toThrow(new TypeError("The password param must be a string."));
         expect(() => passwordIsValid(null)).toThrow(new TypeError("The password param must be a string."));
-        expect(() => passwordIsValid(undefined)).toThrow(new TypeError("The password param must be a string."));
+        expect(passwordIsValid(undefined)).toStrictEqual(false);
     });
     it("should be a valid password", (): void => {
         expect.assertions(40);
@@ -72,7 +72,7 @@ describe("test user", (): void => {
 
         expect(() => emailIsValid(12)).toThrow(new TypeError("The email param must be a string."));
         expect(() => emailIsValid(null)).toThrow(new TypeError("The email param must be a string."));
-        expect(() => emailIsValid(undefined)).toThrow(new TypeError("The email param must be a string."));
+        expect(emailIsValid(undefined)).toStrictEqual(false);
     });
     it("should be test if email is valid", (): void => {
         expect.assertions(10);
@@ -94,7 +94,7 @@ describe("test user", (): void => {
 
         expect(() => phoneNumberIsValid(12)).toThrow(new TypeError("The phone param must be a string."));
         expect(() => phoneNumberIsValid(null)).toThrow(new TypeError("The phone param must be a string."));
-        expect(() => phoneNumberIsValid(undefined)).toThrow(new TypeError("The phone param must be a string."));
+        expect(phoneNumberIsValid(undefined)).toStrictEqual(false);
     });
     it("should be test if number is valid", (): void => {
         expect.assertions(6);

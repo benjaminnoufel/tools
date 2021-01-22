@@ -4,6 +4,9 @@
  * @returns {boolean}
  */
 export const emailIsValid = (email: string): boolean => {
+    if ("undefined" === typeof email) {
+        return false;
+    }
     if ("string" !== typeof email) {
         throw new TypeError("The email param must be a string.");
     }
@@ -22,6 +25,9 @@ export const emailIsValid = (email: string): boolean => {
  * @returns {boolean}
  */
 export const passwordIsValid = (password: string): boolean => {
+    if ("undefined" === typeof password) {
+        return false;
+    }
     if ("string" !== typeof password) {
         throw new TypeError("The password param must be a string.");
     }
@@ -40,6 +46,9 @@ export const passwordIsValid = (password: string): boolean => {
  * @returns {boolean}
  */
 export const phoneNumberIsValid = (phone: string): boolean => {
+    if ("undefined" === typeof phone) {
+        return false;
+    }
     if ("string" !== typeof phone) {
         throw new TypeError("The phone param must be a string.");
     }
