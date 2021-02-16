@@ -1,5 +1,10 @@
 import {logger} from "./utils";
 
+/**
+ * Append a style on DOM
+ * @param {string} href
+ * @returns {Promise<string | void>}
+ */
 export const appendStylesheet = (href: string): Promise<string | void> => new Promise((resolve: (value: void) => void): void => {
     if (!href) {
         throw new Error("href is required");
@@ -22,6 +27,11 @@ export const appendStylesheet = (href: string): Promise<string | void> => new Pr
     document.head.appendChild(stylesheet);
 });
 
+/**
+ * Append a script on DOM
+ * @param {string} src
+ * @returns {Promise<void>}
+ */
 export const appendScript = (src: string): Promise<void> => new Promise((resolve: (value: void) => void): void => {
     if (!src) {
         throw new Error("src is required");
