@@ -3,7 +3,10 @@ name: Package
 on:
   push:
     branches:
-      - next
+      - latest
+  pull_request:
+    branches:
+      - latest
 
 jobs:
   package:
