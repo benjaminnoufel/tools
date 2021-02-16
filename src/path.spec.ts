@@ -1,6 +1,6 @@
 /* eslint-disable @typescript-eslint/ban-ts-comment, no-undefined */
 // @ts-nocheck
-import {normalizePath} from "./path";
+import {normalizePath} from "./index";
 
 describe("test path", (): void => {
     it("should be throw path must be a string", (): void => {

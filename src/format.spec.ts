@@ -1,6 +1,6 @@
 /* eslint-disable @typescript-eslint/ban-ts-comment, no-undefined */
 // @ts-nocheck
-import {formatCurrency, formatDate, formatNumber, formatRoute} from "./format";
+import {formatCurrency, formatDate, formatNumber, formatRoute} from "./index";
 
 describe("test format", (): void => {
     describe("test format date", (): void => {

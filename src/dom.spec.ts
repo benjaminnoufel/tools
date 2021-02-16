@@ -1,4 +1,4 @@
-import {appendScript, appendStylesheet} from "./dom";
+import {appendScript, appendStylesheet} from "./index";
 
 describe("test dom", (): void => {
     describe("test appendStylesheet", (): void => {
