@@ -2,7 +2,7 @@
  * Format a number to a currency with locale
  * @param {string} locale
  * @param {string} currency
- * @param {number} n
+ * @param {number} value
  * @returns {string}
  */
 export const formatCurrency = (locale: string, currency: string, value: number): string => {
@@ -22,7 +22,7 @@ export const formatCurrency = (locale: string, currency: string, value: number):
  * Format a number a good fractionDigits from choosen local
  * @param {string} locale
  * @param {number} maximumFractionDigits
- * @param {number} n
+ * @param {number} value
  * @returns {string}
  */
 export const formatNumber = (locale: string, decimals: number, value: number): string => {
@@ -39,7 +39,7 @@ export const formatNumber = (locale: string, decimals: number, value: number): s
 };
 
 /**
- * Format date with choosen locale
+ * Format date with chosen locale
  * @param {string} locale
  * @param {string | Date} date
  * @returns {string}

@@ -24,6 +24,11 @@ export const ellipsis = (length: number, text: string): string => {
     return wantedText;
 };
 
+/**
+ * Use a console.log with a console.group for production only
+ * @param {string} groupName
+ * @param args
+ */
 export const logger = (groupName: string, ...args: unknown[]): void => {
     if ("string" !== typeof groupName) {
         throw new TypeError("The groupName param must be a string.");
@@ -37,6 +42,13 @@ export const logger = (groupName: string, ...args: unknown[]): void => {
     }
 };
 
+/**
+ * Check if environment is set
+ * Throw an error if one of isn't set
+ * Return all environment variable on array
+ * @param {string[]} names
+ * @returns {string[]}
+ */
 export const getEnvsOrThrow = (names: string[]): string[] => {
     const environmentVariables: string[] = [];
 
