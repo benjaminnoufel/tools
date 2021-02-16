@@ -1,6 +1,14 @@
 /* eslint-disable @typescript-eslint/ban-ts-comment, no-undefined */
 // @ts-nocheck
-import {ellipsis, getEnvsOrThrow, logger} from "./utils";
+import {
+    addingDaysToADate,
+    addingHoursToADate,
+    addingMinutesToADate, addingMonthsToADate,
+    addingSecondsToADate, addingYearsToADate,
+    ellipsis,
+    getEnvsOrThrow,
+    logger
+} from "./utils";
 
 describe("test utils function", (): void => {
     describe("test ellipses function", (): void => {
@@ -104,6 +112,123 @@ describe("test utils function", (): void => {
 
             expect(TEST).toStrictEqual("TEST");
             expect(NODE_ENV).toStrictEqual("development");
+        });
+    });
+});
+
+describe("update date function", (): void => {
+    const testingDate = new Date(2021, 1, 1, 0, 0, 0);
+    describe("adding second to a date", (): void => {
+        it("should be throw if don't give a valid date", (): void => {
+            expect.assertions(1);
+
+            expect(() => addingSecondsToADate("lol", 12)).toThrow(new TypeError("oldDate must be instanceof DateConstructor"));
+        });
+
+        it("should be throw if second param is not a number", (): void => {
+            expect.assertions(1);
+
+            expect(() => addingSecondsToADate(testingDate, "12")).toThrow(new TypeError("Seconds parameter must be a number"));
+        });
+
+        it("should be adding 30 seconds", (): void => {
+            expect.assertions(1);
+            expect(addingSecondsToADate(testingDate, 30)).toStrictEqual(new Date(2021, 1, 1, 0, 0, 30));
+        });
+    });
+
+    describe("adding minutes to a date", (): void => {
+        it("should be throw if don't give a valid date", (): void => {
+            expect.assertions(1);
+
+            expect(() => addingMinutesToADate("lol", 12)).toThrow(new TypeError("oldDate must be instanceof DateConstructor"));
+        });
+
+        it("should be throw if second param is not a number", (): void => {
+            expect.assertions(1);
+
+            expect(() => addingMinutesToADate(testingDate, "12")).toThrow(new TypeError("Minutes parameter must be a number"));
+        });
+
+        it("should be adding 30 minutes", (): void => {
+            expect.assertions(1);
+            expect(addingMinutesToADate(testingDate, 30)).toStrictEqual(new Date(2021, 1, 1, 0, 30, 0));
+        });
+    });
+
+    describe("adding hours to a date", (): void => {
+        it("should be throw if don't give a valid date", (): void => {
+            expect.assertions(1);
+
+            expect(() => addingHoursToADate("lol", 12)).toThrow(new TypeError("oldDate must be instanceof DateConstructor"));
+        });
+
+        it("should be throw if second param is not a number", (): void => {
+            expect.assertions(1);
+
+            expect(() => addingHoursToADate(testingDate, "12")).toThrow(new TypeError("Hours parameter must be a number"));
+        });
+
+        it("should be adding 3 hours", (): void => {
+            expect.assertions(1);
+            expect(addingHoursToADate(testingDate, 3)).toStrictEqual(new Date(2021, 1, 1, 3, 0, 0));
+        });
+    });
+
+    describe("adding days to a date", (): void => {
+        it("should be throw if don't give a valid date", (): void => {
+            expect.assertions(1);
+
+            expect(() => addingDaysToADate("lol", 12)).toThrow(new TypeError("oldDate must be instanceof DateConstructor"));
+        });
+
+        it("should be throw if second param is not a number", (): void => {
+            expect.assertions(1);
+
+            expect(() => addingDaysToADate(testingDate, "12")).toThrow(new TypeError("Days parameter must be a number"));
+        });
+
+        it("should be adding 3 days", (): void => {
+            expect.assertions(1);
+            expect(addingDaysToADate(testingDate, 3)).toStrictEqual(new Date(2021, 1, 4, 0, 0, 0));
+        });
+    });
+
+    describe("adding months to a date", (): void => {
+        it("should be throw if don't give a valid date", (): void => {
+            expect.assertions(1);
+
+            expect(() => addingMonthsToADate("lol", 12)).toThrow(new TypeError("oldDate must be instanceof DateConstructor"));
+        });
+
+        it("should be throw if second param is not a number", (): void => {
+            expect.assertions(1);
+
+            expect(() => addingMonthsToADate(testingDate, "12")).toThrow(new TypeError("Months parameter must be a number"));
+        });
+
+        it("should be adding 3 months", (): void => {
+            expect.assertions(1);
+            expect(addingMonthsToADate(testingDate, 3)).toStrictEqual(new Date(2021, 4, 1, 0, 0, 0));
+        });
+    });
+
+    describe("adding years to a date", (): void => {
+        it("should be throw if don't give a valid date", (): void => {
+            expect.assertions(1);
+
+            expect(() => addingYearsToADate("lol", 12)).toThrow(new TypeError("oldDate must be instanceof DateConstructor"));
+        });
+
+        it("should be throw if second param is not a number", (): void => {
+            expect.assertions(1);
+
+            expect(() => addingYearsToADate(testingDate, "12")).toThrow(new TypeError("Years parameter must be a number"));
+        });
+
+        it("should be adding 3 years", (): void => {
+            expect.assertions(1);
+            expect(addingYearsToADate(testingDate, 3)).toStrictEqual(new Date(2024, 1, 1, 0, 0, 0));
         });
     });
 });
