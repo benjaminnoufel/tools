@@ -1,6 +1,6 @@
 /* eslint-disable @typescript-eslint/ban-ts-comment, no-undefined */
 // @ts-nocheck
-import {emailIsValid, passwordIsValid, phoneNumberIsValid} from "./user";
+import {emailIsValid, passwordIsValid, phoneNumberIsValid} from "./index";
 
 const randomize = (input: string): string => {
     const characters: string[] = input.split("");
