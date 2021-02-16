@@ -7,9 +7,6 @@ on:
             - latest
 
     pull_request:
-        branches:
-            - next
-            - latest
 
 jobs:
     test:

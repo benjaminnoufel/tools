@@ -3,12 +3,10 @@ name: Code Style CI
 on:
     push:
         branches:
-            - next
+          - next
+          - latest
 
     pull_request:
-        branches:
-            - next
-            - latest
 
 jobs:
     codestyle:
