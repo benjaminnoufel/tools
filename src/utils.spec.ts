@@ -10,7 +10,7 @@ import {
     ellipsis,
     getEnvsOrThrow,
     logger
-} from "./utils";
+} from "./index";
 
 describe("test utils function", (): void => {
     describe("test ellipses function", (): void => {
