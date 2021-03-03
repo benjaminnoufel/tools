@@ -83,14 +83,10 @@ describe("test utils function", (): void => {
 
     describe("test getEnvsOrThrow function", (): void => {
         it("should be throw one of is not a string", (): void => {
-            expect.assertions(6);
+            expect.assertions(2);
 
             expect(() => getEnvsOrThrow([12, "NODE_ENV"], false)).toThrow(new TypeError("All env name must be a string."));
             expect(() => getEnvsOrThrow(["NODE_ENV", 12], false)).toThrow(new TypeError("All env name must be a string."));
-            expect(() => getEnvsOrThrow([null, "NODE_ENV"], false)).toThrow(new TypeError("All env name must be a string."));
-            expect(() => getEnvsOrThrow(["NODE_ENV", null], false)).toThrow(new TypeError("All env name must be a string."));
-            expect(() => getEnvsOrThrow([undefined, "NODE_ENV"], false)).toThrow(new TypeError("All env name must be a string."));
-            expect(() => getEnvsOrThrow(["NODE_ENV", undefined], false)).toThrow(new TypeError("All env name must be a string."));
         });
         it("should be throw env is undefined", (): void => {
             expect.assertions(1);
@@ -99,10 +95,14 @@ describe("test utils function", (): void => {
         });
 
         it("should be throw one of is undefined", (): void => {
-            expect.assertions(2);
+            expect.assertions(6);
 
             expect(() => getEnvsOrThrow(["TEST", "NODE_ENV"], false)).toThrow(new ReferenceError("Please, set the TEST variable in the .env file."));
             expect(() => getEnvsOrThrow(["NODE_ENV", "TEST"], false)).toThrow(new ReferenceError("Please, set the TEST variable in the .env file."));
+            expect(() => getEnvsOrThrow([null, "TEST"], false)).toThrow(new ReferenceError("All env name must be a string."));
+            expect(() => getEnvsOrThrow(["NODE_ENV", null], false)).toThrow(new ReferenceError("All env name must be a string."));
+            expect(() => getEnvsOrThrow([undefined, "TEST"], false)).toThrow(new ReferenceError("All env name must be a string."));
+            expect(() => getEnvsOrThrow(["NODE_ENV", undefined], false)).toThrow(new ReferenceError("All env name must be a string."));
         });
 
         it("should be return all environment", () => {
@@ -117,14 +117,12 @@ describe("test utils function", (): void => {
         });
 
         it("should be return all environment in object", (): void => {
-            expect.assertions(2);
+            expect.assertions(1);
 
-            process.env.TEST = "TEST";
 
-            const environment = getEnvsOrThrow(["NODE_ENV", "TEST"], true);
+            const environment = getEnvsOrThrow(["NODE_ENV"], true);
 
-            expect(environment.TEST).toStrictEqual("TEST");
-            expect(environment.NODE_ENV).toStrictEqual("development");
+            expect(JSON.parse(environment.NODE_ENV)).toStrictEqual("development");
         });
     });
 });

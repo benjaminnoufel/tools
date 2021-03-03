@@ -54,14 +54,16 @@ export const getEnvsOrThrow = (names: string[], toObject: boolean = false): stri
     const environmentVariables: string[] = [];
     let environmentVariablesObject: Record<string, string> = {};
 
-    const envWithoutComment = names.filter(n => !n.startsWith("#"));
-    const checkEnvNames = envWithoutComment.map(name => "string" === typeof name);
+    // eslint-disable-next-line @typescript-eslint/no-unnecessary-condition
+    const checkEnvNames: boolean[] = names.map(name => "string" === typeof name);
 
+    console.log({checkEnvNames});
     if (!checkEnvNames.every(Boolean)) {
         throw new TypeError("All env name must be a string.");
     }
+    const envWithoutComment: string[] = names.filter(n => !n.startsWith("#"));
 
-    for (const name of names) {
+    for (const name of envWithoutComment) {
         const environmentVariable: string | undefined = process.env[name];
 
         if ("undefined" === typeof environmentVariable) {
@@ -78,6 +80,7 @@ export const getEnvsOrThrow = (names: string[], toObject: boolean = false): stri
     }
 
     if (toObject) {
+        console.log(environmentVariablesObject);
         return environmentVariablesObject;
     }
     return environmentVariables;
