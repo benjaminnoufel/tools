@@ -2,10 +2,31 @@
 
 ## Versions
 
+- [`0.3.0`](#030)
 - [`0.2.0`](#020)
 - [`0.1.2`](#012)
 - [`0.1.1`](#011)
 - [`0.1.0`](#010)
+
+## 0.3.0
+
+*2021-03-03*
+
+### Major changes
+
+- [x] Change prototype for getEnvsOrThrow, can be return an object or an array.
+
+### New Features
+
+None.
+
+### Minor changes
+
+None.
+
+### Bug & security fixes
+
+None.
 
 ## 0.2.0
 

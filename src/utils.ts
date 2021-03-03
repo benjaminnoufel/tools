@@ -47,10 +47,12 @@ export const logger = (groupName: string, ...args: unknown[]): void => {
  * Throw an error if one of isn't set
  * Return all environment variable on array
  * @param {string[]} names
+ * @param {boolean} toObject
  * @returns {string[]}
  */
-export const getEnvsOrThrow = (names: string[]): string[] => {
+export const getEnvsOrThrow = (names: string[], toObject: boolean = false): string[] | Record<string, string> => {
     const environmentVariables: string[] = [];
+    let environmentVariablesObject: Record<string, string> = {};
 
     const checkEnvNames = names.map(name => "string" === typeof name);
 
@@ -64,10 +66,19 @@ export const getEnvsOrThrow = (names: string[]): string[] => {
         if ("undefined" === typeof environmentVariable) {
             throw new ReferenceError(`Please, set the ${name} variable in the .env file.`);
         }
-
-        environmentVariables.push(environmentVariable);
+        if (toObject) {
+            environmentVariablesObject = {
+                ...environmentVariablesObject,
+                [name]: environmentVariable
+            };
+        } else {
+            environmentVariables.push(environmentVariable);
+        }
     }
 
+    if (toObject) {
+        return environmentVariablesObject;
+    }
     return environmentVariables;
 };
 
