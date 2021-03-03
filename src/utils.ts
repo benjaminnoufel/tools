@@ -57,7 +57,6 @@ export const getEnvsOrThrow = (names: string[], toObject: boolean = false): stri
     // eslint-disable-next-line @typescript-eslint/no-unnecessary-condition
     const checkEnvNames: boolean[] = names.map(name => "string" === typeof name);
 
-    console.log({checkEnvNames});
     if (!checkEnvNames.every(Boolean)) {
         throw new TypeError("All env name must be a string.");
     }
@@ -80,7 +79,6 @@ export const getEnvsOrThrow = (names: string[], toObject: boolean = false): stri
     }
 
     if (toObject) {
-        console.log(environmentVariablesObject);
         return environmentVariablesObject;
     }
     return environmentVariables;
