@@ -54,7 +54,8 @@ export const getEnvsOrThrow = (names: string[], toObject: boolean = false): stri
     const environmentVariables: string[] = [];
     let environmentVariablesObject: Record<string, string> = {};
 
-    const checkEnvNames = names.map(name => "string" === typeof name);
+    const envWithoutComment = names.filter(n => !n.startsWith("#"));
+    const checkEnvNames = envWithoutComment.map(name => "string" === typeof name);
 
     if (!checkEnvNames.every(Boolean)) {
         throw new TypeError("All env name must be a string.");
@@ -69,7 +70,7 @@ export const getEnvsOrThrow = (names: string[], toObject: boolean = false): stri
         if (toObject) {
             environmentVariablesObject = {
                 ...environmentVariablesObject,
-                [name]: environmentVariable
+                [name]: JSON.stringify(environmentVariable)
             };
         } else {
             environmentVariables.push(environmentVariable);
