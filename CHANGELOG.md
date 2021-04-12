@@ -2,6 +2,7 @@
 
 ## Versions
 
+- [`0.4.0`](#040)
 - [`0.3.2`](#032)
 - [`0.3.1`](#031)
 - [`0.3.0`](#030)
@@ -9,6 +10,28 @@
 - [`0.1.2`](#012)
 - [`0.1.1`](#011)
 - [`0.1.0`](#010)
+
+## 0.4.0
+
+*2021-04-12*
+
+### Major changes
+
+- [x] Change appendScript prototype for accept HTMLScriptElement props
+- [x] Change appendStylesheet prototype for accept HTMLLinkElement props
+
+### New Features
+
+None.
+
+### Minor changes
+
+None.
+
+### Bug & security fixes
+
+None.
+
 
 ## 0.3.2
 
