@@ -1,3 +1,5 @@
+/* eslint-disable @typescript-eslint/ban-ts-comment,jest/no-conditional-expect,jest/valid-expect-in-promise,no-empty */
+// @ts-nocheck
 import {appendScript, appendStylesheet} from "./index";
 
 describe("test dom", (): void => {
@@ -6,9 +8,11 @@ describe("test dom", (): void => {
             expect.assertions(1);
 
             try {
-                await appendStylesheet("");
+                await appendStylesheet({
+                    href: "",
+                    rel: ""
+                });
             } catch (err) {
-                // eslint-disable-next-line jest/no-conditional-expect
                 expect(err.message).toStrictEqual("href is required");
             }
         });
@@ -17,11 +21,10 @@ describe("test dom", (): void => {
             expect.assertions(1);
 
             try {
-                // eslint-disable-next-line @typescript-eslint/ban-ts-comment
-                // @ts-expect-error
-                await appendStylesheet(1212);
+                await appendStylesheet({
+                    href: 1212
+                });
             } catch (err) {
-                // eslint-disable-next-line jest/no-conditional-expect
                 expect(err.message).toStrictEqual("href must be a string");
             }
         });
@@ -29,8 +32,10 @@ describe("test dom", (): void => {
         it("should be test if appendStylesheet is instanceOf Promise", (): void => {
             expect.assertions(1);
 
-            // eslint-disable-next-line jest/valid-expect-in-promise
-            const result = appendStylesheet("https://fonts.googleapis.com/css2?family=Nerko+One&display=swap");
+            const result = appendStylesheet({
+                href: "https://fonts.googleapis.com/css2?family=Nerko+One&display=swap",
+                rel: "stylesheet"
+            });
             expect(result).toBeInstanceOf(Promise);
         });
 
@@ -46,8 +51,10 @@ describe("test dom", (): void => {
         it("should be test if appendStylesheet do not append again", (): void => {
             expect.assertions(1);
 
-            // eslint-disable-next-line jest/valid-expect-in-promise
-            const result = appendStylesheet("https://fonts.googleapis.com/css2?family=Nerko+One&display=swap");
+            const result = appendStylesheet({
+                href: "https://fonts.googleapis.com/css2?family=Nerko+One&display=swap",
+                rel: "stylesheet"
+            });
             expect(result).toBeInstanceOf(Promise);
         });
 
@@ -55,7 +62,6 @@ describe("test dom", (): void => {
         it("should be test if have a one stylesheet on the dom", (): void => {
             expect.assertions(1);
 
-            // eslint-disable-next-line no-undef
             const link = document.querySelectorAll("link[href=\"https://fonts.googleapis.com/css2?family=Nerko+One&display=swap\"]");
             expect(link).toHaveLength(1);
         });
@@ -65,9 +71,11 @@ describe("test dom", (): void => {
             expect.assertions(1);
 
             try {
-                await appendScript("");
+                await appendScript({
+                    src: "",
+                    async: true
+                });
             } catch (err) {
-                // eslint-disable-next-line jest/no-conditional-expect
                 expect(err.message).toStrictEqual("src is required");
             }
         });
@@ -76,11 +84,10 @@ describe("test dom", (): void => {
             expect.assertions(1);
 
             try {
-                // eslint-disable-next-line @typescript-eslint/ban-ts-comment
-                // @ts-expect-error
-                await appendScript(1212);
+                await appendScript({
+                    src: 1212
+                });
             } catch (err) {
-                // eslint-disable-next-line jest/no-conditional-expect
                 expect(err.message).toStrictEqual("src must be a string");
             }
         });
@@ -88,8 +95,10 @@ describe("test dom", (): void => {
         it("should be test if appendScript is instanceOf Promise", (): void => {
             expect.assertions(1);
 
-            // eslint-disable-next-line jest/valid-expect-in-promise
-            const result = appendScript("https://apis.google.com/js/platform.js");
+            const result = appendScript({
+                src: "https://apis.google.com/js/platform.js",
+                async: true
+            });
             expect(result).toBeInstanceOf(Promise);
         });
 
@@ -98,12 +107,14 @@ describe("test dom", (): void => {
             expect.assertions(1);
 
             try {
-                await appendScript("https://apis.google.com/js/platform.js");
+                await appendScript({
+                    src: "https://apis.google.com/js/platform.js",
+                    async: true
+                });
 
                 const script = document.querySelectorAll("script[src=\"https://apis.google.com/js/platform.js\"]");
 
                 expect(script).toHaveLength(1);
-                // eslint-disable-next-line no-empty
             } finally {}
         });
 
@@ -112,12 +123,14 @@ describe("test dom", (): void => {
             expect.assertions(1);
 
             try {
-                await appendScript("https://apis.google.com/js/platform.js");
+                await appendScript({
+                    src: "https://apis.google.com/js/platform.js",
+                    async: true
+                });
 
                 const script = document.querySelectorAll("script[src=\"https://apis.google.com/js/platform.js\"]");
 
                 expect(script).toHaveLength(1);
-                // eslint-disable-next-line no-empty
             } finally {}
         });
 
