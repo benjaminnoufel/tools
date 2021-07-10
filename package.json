@@ -1,6 +1,6 @@
 {
     "name": "@benjaminnoufel/tools",
-    "version": "0.4.0",
+    "version": "0.4.1",
     "description": "It's a different collection of tools.",
     "license": "MIT",
     "main": "./dist/index.js",
